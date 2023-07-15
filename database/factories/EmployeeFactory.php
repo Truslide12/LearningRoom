@@ -19,7 +19,7 @@ class EmployeeFactory extends Factory
         return [
             'firstName' => $this->faker->firstName(),
             'firstName' => $this->faker->firstName(),
-            'rank'      => $this->faker->randomNumber()
+            'rank'      => $this->faker->randomNumber(),
         ];
     }
 }
