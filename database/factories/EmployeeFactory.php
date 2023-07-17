@@ -16,10 +16,10 @@ class EmployeeFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            'firstName' => $this->faker->firstName(),
-            'firstName' => $this->faker->firstName(),
-            'rank'      => $this->faker->randomNumber(),
-        ];
+            return [
+                'first_name' => $this->faker->firstName(),
+                'last_name' => $this->faker->lastName(),
+                'rank'      => $this->faker->randomDigitNotZero(100),
+            ];
     }
 }
