@@ -19,11 +19,11 @@
                             </tr>
                         </thead>
                         <tbody class="tablecontents">
-                            @unless($employees->count())
+                            @if($employees->count())
                                 @foreach($employees as $key => $employee)
-                                <tr class="rankable" data-id="{{$project->id}}">
-                                    <td>{{$employee->firstName}}</td>
-                                    <td>{{$employee->lastName}}</td>
+                                <tr class="rankable" data-id="{{$employee->id}}">
+                                    <td>{{$employee->first_name}}</td>
+                                    <td>{{$employee->last_name}}</td>
                                     <!-- <td>{{$employee->lastName}}</td> -->
                                 </tr>
                                 @endforeach
