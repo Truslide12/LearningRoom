@@ -6,6 +6,8 @@
         <div class="col-6 col-sm-6">
             <div class="row">
                 <h3 class="mb-5">Sorting with raw Laravel/HTML</h3>
+                <p>{{$currentDir}}</p>
+                <p>{{$currentCol}}</p>
             </div>
             <div class="row">
                 <div class="table-responsive">

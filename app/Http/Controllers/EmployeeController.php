@@ -14,7 +14,7 @@ class EmployeeController extends Controller
         } else {
             $currentCol = 'first_name';
         }
-        if($request->currentCol){
+        if($request->selectedCol){
             $selectedCol = $request->selectedCol;
         } else {
             $selectedCol = 'first_name';
@@ -22,22 +22,28 @@ class EmployeeController extends Controller
         if($request->currentDir){
             $currentDir = $request->currentDir;
         } else {
-            $currentDir = 'desc';
+            $currentDir = 'asc';
         }
         
-        // Set Order and Direction
-        if($selectedCol == $currentCol){
+        // // Set Order and Direction
+        if($selectedCol === $currentCol){
             if($currentDir === 'asc'){
-                $employees = Employee::orderByDesc($selectedCol)->get();
+                $employees = Employee::orderBy($selectedCol, 'desc')->get();
                 $currentDir = 'desc';
             } else {
-                $employees = Employee::all();
+                $employees = Employee::orderBy($selectedCol, 'asc')->get();
                 $currentDir = 'asc';
             }
         } else {
-            $employees = Employee::orderByAsc($selectedCol)->get();
+            $employees = Employee::orderBy($selectedCol, $currentDir)->get();
         } 
         // dd($employees);
-        return view('index', ['employees' => $employees]);
+        // $employees = Employee::orderBy('first_name', 'desc')->get();
+        return view('index', 
+            [
+                'employees'     => $employees,
+                'currentCol'   => $selectedCol,
+                'currentDir'    => $currentDir,
+            ]);
     }
 }
