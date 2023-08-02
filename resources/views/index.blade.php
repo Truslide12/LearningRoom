@@ -6,16 +6,35 @@
         <div class="col-6 col-sm-6">
             <div class="row">
                 <h3 class="mb-5">Sorting with raw Laravel/HTML</h3>
-                <p>{{$currentDir}}</p>
-                <p>{{$currentCol}}</p>
             </div>
             <div class="row">
                 <div class="table-responsive">
                     <table id="results" class="table table-hover col-sm-12 w-auto">
                         <thead class="thead-dark">
                             <tr>
-                                <th><h5>First Name</h5></th>
-                                <th><h5>Last Name</h5></th>
+                                <th>
+                                    <a href="{{route( 'employees.indexSorted', 
+                                        [
+                                            'selectedCol'   => 'first_name',
+                                            'currentCol'    => $currentCol,
+                                            'currentDir'    => $currentDir,
+                                        ]
+                                        )}}"
+                                    >
+                                        <h5>First Name</h5>
+                                    </a>
+                                </th>
+                                <th>
+                                    <a  href="{{route( 'employees.indexSorted', 
+                                        [
+                                            'selectedCol'   => 'last_name',
+                                            'currentCol'    => $currentCol,
+                                            'currentDir'    => $currentDir,
+                                        ]
+                                        )}}">
+                                        <h5>Last Name</h5>
+                                    </a>
+                                </th>
                                 <!-- <th>Ranking</th>
                                 <th></th> -->
                             </tr>

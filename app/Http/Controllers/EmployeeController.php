@@ -9,22 +9,38 @@ class EmployeeController extends Controller
 {
     public function index(Request $request)
     {
-        if($request->currentCol){
-            $currentCol = $request->currentCol;
+        $employees = Employee::orderBy('last_name', 'ASC')->get();
+
+        return view('index', 
+            [
+                'employees'     => $employees,
+                'currentCol'   => 'last_name',
+                'currentDir'    => 'ASC',
+            ]);
+    }
+
+    public function indexSorted (Request $request)
+    {
+        // dd($request->query('selectedCol'));
+        if($request->query('currentCol')){
+            $currentCol = $request->query('currentCol');
         } else {
             $currentCol = 'first_name';
         }
-        if($request->selectedCol){
-            $selectedCol = $request->selectedCol;
+        if($request->query('selectedCol')){
+            $selectedCol = $request->query('selectedCol');
         } else {
             $selectedCol = 'first_name';
         }
-        if($request->currentDir){
-            $currentDir = $request->currentDir;
+        if($request->query('currentDir')){
+            $currentDir = $request->query('currentDir');
         } else {
             $currentDir = 'asc';
         }
-        
+        // dd(['currentCol' => $currentCol,
+        //     'selectedCol' => $selectedCol,
+        //     'currentDir' => $currentDir,
+        // ]);
         // // Set Order and Direction
         if($selectedCol === $currentCol){
             if($currentDir === 'asc'){
